@@ -5,13 +5,13 @@ In July 2021 I started my journey as a Quansight Labs Intern. In this blog I am 
 
 
 ## On-boarding
-Starting with a new project in a new environment is an exciting but also a stressful change. To make it more interesting, the work at Quansight is fully remote. For me personaly that means more space to figure things out. I don't have trouble getting things done. But I do not enjoy if I do not have certain amout of freedom to work my own way.
-
-If, with this freedom to work, you can also receive the right amount of interaction, that is just awesome. And that was how I experienced my internship from an organizational perspective.
+Starting with a new project in a new environment is an exciting but also a stressful change. To make it more interesting, the work at Quansight is fully remote. For me personaly that means more space to figure things out. I don't have trouble getting things done. If, with this freedom to work, you can also receive the right amount of interaction, motivation, community vibe, ... that is just awesome. And that was how I experienced my internship from an organizational perspective.
 
 Before starting I met with my mentor, [Kshiteej Kalabarkar](https://github.com/kshitij12345), to have a feeling of what was expected, how will my first week look like and what is the project I will be working on.
 
-On-boarding process was very friendly with a perfect rithm. Most of the information about the process passed thorough the email, Labs Internship Handbook written in Notion was circulated containing all possible info you need. We received a warm welcome via Slack and from day one on we had a weekly Intern Share where all the interns and organizers got together to introduce each other. Later we presented and commented the work in progress. They were interesting from knowladge as well as social perspective.
+On-boarding process was very friendly with a perfect rithm. Most of the information about the process passed thorough the email, Labs Internship Handbook written in Notion was circulated containing all possible info you need. We received a warm welcome via Slack and from day one on we had a weekly Intern Share where all the interns and organizers got together. In the first place to introduce each other, later to presented, hear about and support the work in progress. They were interesting from knowladge as well as social perspective.
+
+![On-boarding](Blog_picture_0.jpg)
 
 ## Project description
 
@@ -19,9 +19,9 @@ The project I was working on at Quansight Labs was the **implementation of the d
 
 ### What is all that?
 
->The purpose of the **Dataframe interchange protocol ( __dataframe__ )** is to enable data interchange. I.e., a way to convert one type of dataframe into another type (for example, convert a Koalas dataframe into a Pandas dataframe, or a cuDF dataframe into a Vaex dataframe).
+>The purpose of the **Dataframe interchange protocol (`__dataframe__`)** is to enable data interchange. I.e., a way to convert one type of dataframe into another type (for example, convert a Koalas dataframe into a Pandas dataframe, or a cuDF dataframe into a Vaex dataframe).
 
-With the protocol implemented in dataframe libraries we will be able to write code that exepts any kind of dataframe :tada: <br>
+With the protocol implemented in dataframe libraries we will be able to write code that exepts any kind of dataframe 🎉 <br>
 For more information visit the [RFC blog post](https://data-apis.org/blog/dataframe_protocol_rfc/) or the [official site](https://data-apis.org/dataframe-protocol/latest/index.html).
 
 >**Vaex library** is a high performance Python library for lazy Out-of-Core DataFrames, to visualize and explore big tabular datasets.
@@ -30,15 +30,17 @@ More about the Vaex library is available on the [official site](https://vaex.io/
 
 My work thereby included connecting `vaex` dataframe class to a base class `__dataframe__` specified by the Consortium for Python Data API Standards.
 
+![Project picture](Blog_picture_2.png)
+
 ### How did I start?
 
-After reading and re-reading the specifications I tried to talk about the problem as much as possible. With my mentor, with my colleague, with a friend, etc. Talking about it helped me get a bigger picture and an idea of where to start. Starting is hard. Talking about it helps :coffee: :heartpulse: 
+After reading and re-reading the specifications I tried to talk about the problem as much as possible. With my mentor, with my colleague, with a friend, etc. Talking about it helped me get a bigger picture and an idea of where to start. Starting is hard. Talking about it helps ☕️💗 
 
 A [prototype implementation](https://github.com/data-apis/dataframe-api/blob/27b8e1cb676bf10704d1dfc3dca0d0d806e2e802/protocol/pandas_implementation.py) for `Pandas` dataframe has already been written so I started there with the most simple part, understanding the method for `int` and `float` type of Vaex dataframe. I had to check out the library and get to know it better.
 
-The general method to move between dataframes is called `from_dataframe`. It iterates through the dictionary of columns, calls the correct methods and transfers the column to the desired type.
+The general method in the dataframe protocol where the transformation between dataframes happens is called `from_dataframe`. It iterates through the dictionary of columns from the input dataframe, calls the correct methods and transfers the column to the desired type.
 
-The base class for the `__dataframe__` method includes three classes which are `_Buffer`, `_Column` and `DataFrame`. Each of them has necessary and additional methods to construct and sescribe a dataframe. 
+The base class for the `__dataframe__` method includes three sepearate classes which are `_Buffer`, `_Column` and `_DataFrame`. Each of them has necessary and additional methods to construct and describe a dataframe. 
 
 ## Interesting topics covered, interesting lessions learned
 - **Vaex Library**: first of all I learned a lot about the Vaex library. With it's lazy calculations and expressions it is really an interesting project to be working on.
