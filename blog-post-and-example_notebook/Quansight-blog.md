@@ -11,7 +11,7 @@ Before starting I met with my mentor, [Kshiteej Kalabarkar](https://github.com/k
 
 On-boarding process was very friendly with a perfect rithm. Most of the information about the process passed thorough the email, Labs Internship Handbook written in Notion was circulated containing all possible info you need. We received a warm welcome via Slack and from day one on we had a weekly Intern Share where all the interns and organizers got together. In the first place to introduce each other, later to presented, hear about and support the work in progress. They were interesting from knowladge as well as social perspective.
 
-![On-boarding](Blog_picture_0.jpg)
+![On-boarding](Blog_picture_0.png)
 
 ## Project description
 
