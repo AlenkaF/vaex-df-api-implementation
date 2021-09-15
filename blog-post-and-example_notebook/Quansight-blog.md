@@ -14,7 +14,7 @@ Before starting I met with my mentor, [Kshiteej Kalabarkar](https://github.com/k
 
 On-boarding process was very friendly with a perfect rithm. Most of the information about the process passed thorough the email, Labs Internship Handbook written in Notion was circulated containing all possible info you need. We received a warm welcome via Slack and from day one on we had a weekly Intern Share where all the interns and organizers got together. In the first place to introduce each other, later to presented, hear about and support the work in progress. They were interesting from knowladge as well as social perspective.
 
-![On-boarding](Blog_picture_0.png)
+<center><img src="Blog_picture_0.png" width="1000"></center>
 
 ## Project description <a name="projdescr"></a>
 
@@ -33,7 +33,7 @@ More about the Vaex library is available on the [official site](https://vaex.io/
 
 My work thereby included connecting `vaex` dataframe class to a base class `__dataframe__` specified by the Consortium for Python Data API Standards.
 
-![Project picture](Blog_picture_2.png)
+<center><img src="Blog_picture_2.png" width="800"></center>
 
 ### How did I start?
 
@@ -61,7 +61,7 @@ when working with data you came across the topic of data types for sure. While w
 - **Array interface**: 
 when the `from_dataframe` method iterates through the columns it basically transfers the problem to columnar level and there the interchange of data is really happening. That means array API is used. The easiest way is with [DLPack](https://github.com/dmlc/dlpack). Pandas and Vaex don't have this protocol implemented so insted we have to refer to the buffer and exchange data through the [`array_interface`](https://numpy.org/devdocs/reference/arrays.interface.html). That means that in Pandas and Vaex implementation columns are read as NumPy arrays (ndarrays) and with that `array_interface` is used.
 
-![Buffers](Blog_picture_3.jpg)
+<img src="Blog_picture_3.jpg" width="900">
 
 - **Categoricals**:
 categorical columns turned out to be very complicated. Every library has it's own way of handling this kind of data and it is necessary to spend some time learning about it. In Vaex the API will be changed to match Arrow in the future (reference: https://github.com/data-apis/dataframe-api/issues/41).
@@ -96,7 +96,7 @@ after implementing the protocol for all dtypes another complicated topic was lef
 - **Chunks**:
 the last thing I had to take care of was the implementation of the protocol for chunked dataframe. A chunk is a subset of a column or dataframe that contains a set of (neighboring) rows. Nice visual can be seen [here](https://data-apis.org/dataframe-protocol/latest/design_requirements.html).
 
-    ![Chunks](Blog_picture_4.png)
+    <center><img src="Blog_picture_4.png" width="1100"></center>
     
     Vaex can read data in chunks. It is not the only library that does so and it is a functionality that should be preserved if possible. What I had to add to make it work was the definition of chunks in the `__dataframe__` classes and an iteration through the chunks in `from_dataframe()` before iterating through the columns.
 
