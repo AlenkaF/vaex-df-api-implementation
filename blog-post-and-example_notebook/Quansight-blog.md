@@ -3,8 +3,12 @@
 
 In July 2021 I started my journey as a Quansight Labs Intern. In this blog I am going to reflect on my experience with the on-boarding process, how the interaction in the Labs has been and hopefuly interesting detils of the project I have been working on.
 
+1. [On-boarding](#onboarding)
+2. [Project description](#projdescr)
+3. [Interesting topics covered, interesting lessions learned](#topics)
+4. [The end](#fin)
 
-## On-boarding
+## On-boarding <a name="onboarding"></a>
 Starting with a new project in a new environment is an exciting but also a stressful change. To make it more interesting, the work at Quansight is fully remote. For me personaly that means more space to figure things out. I don't have trouble getting things done. If, with this freedom to work, you can also receive the right amount of interaction, motivation, community vibe, ... that is just awesome. And that was how I experienced my internship from an organizational perspective.
 
 Before starting I met with my mentor, [Kshiteej Kalabarkar](https://github.com/kshitij12345), to have a feeling of what was expected, how will my first week look like and what is the project I will be working on.
@@ -13,7 +17,7 @@ On-boarding process was very friendly with a perfect rithm. Most of the informat
 
 ![On-boarding](Blog_picture_0.png)
 
-## Project description
+## Project description <a name="projdescr"></a>
 
 The project I was working on at Quansight Labs was the **implementation of the dataframe api protocol into the Vaex library**.
 
@@ -42,7 +46,7 @@ The general method in the dataframe protocol where the transformation between da
 
 The base class for the `__dataframe__` method includes three sepearate classes which are `_Buffer`, `_Column` and `_DataFrame`. Each of them has necessary and additional methods to construct and describe a dataframe. 
 
-## Interesting topics covered, interesting lessions learned
+## Interesting topics covered, interesting lessions learned <a name="topics"></a>
 - **Vaex Library**: first of all I learned a lot about the Vaex library. With it's lazy calculations and expressions it is really an interesting project to be working on.
 
 -  **Data frame**:
@@ -58,16 +62,22 @@ when working with data you came across the topic of data types for sure. While w
 - **Array interface**: 
 when the `from_dataframe` method iterates through the columns it basically transfers the problem to columnar level and there the interchange of data is really happening. That means array API is used. The easiest way is with [DLPack](https://github.com/dmlc/dlpack). Pandas and Vaex don't have this protocol implemented so insted we have to refer to the buffer and exchange data through the [`array_interface`](https://numpy.org/devdocs/reference/arrays.interface.html). That means that in Pandas and Vaex implementation columns are read as NumPy arrays (ndarrays) and with that `array_interface` is used.
 
+![Buffers](Blog_picture_3.jpg)
+
 - **Categoricals**:
 categorical columns turned out to be very complicated. Every library has it's own way of handling this kind of data and it is necessary to spend some time learning about it. In Vaex the API will be changed to match Arrow in the future (reference: https://github.com/data-apis/dataframe-api/issues/41).
 
-- **Building the library localy**:
-for the whole first month I was playing around in Jupyter Lab. After the code got more structured I needed to implement it localy and it was tricky at first. I had no idea where to start. I had trouble running the tests. Doing lots of silly things :smirk:
+    Based on my research you can have Vaex categorical columns made with methods `categorize` or `ordinal_encode` (which is deprecated). There is another possibility where the underlying expression is an Arrow dictionary. Both possibilities have deffierent ways of working with categoricals. This means there had to be checks added to see what kind of expression is used  (Vaex categorical or Arrow dictionary).
+    
+    Also the idea in the protocol is that only the codes of the categories are transfered through the buffer. Categories are mapped and than applied to the codes afterwords. In the first case of Vaex categoricals there is a special case where codes needed to be calculated seperately.
 
-	At the end it turned out not to be that difficult. You need to spend some time researching how the librarly is organized and you also need to be sure your local library is in fact editable. I had to learn the importance of building the library locally in a correct way :lough:
+- **Building the library localy**:
+for the whole first month I was playing around in Jupyter Lab. After the code got more structured I needed to implement it localy and it was tricky at first. I had no idea where to start. I had trouble running the tests. All in all doing lots of silly things 😏
+
+	At the end it turned out not to be that difficult. I had to spend some time researching how the library is organized and I should be sure my local library is in fact editable. I had to learn the importance of building the library locally in a correct way 😁
 
 - **Connecting with the developers**:
-right after implementing the protocol localy I got connected with Vaex developers. They were extremly friendly, understanding and helpful. I submited a draft PR and with [Maarten Breddels](https://vaex.io/profile/maarten) help my project got pushed further on and some errors and missunderstandings were corrected.
+right after implementing the protocol localy I got connected with Vaex developers. They were extremly friendly, understanding and helpful. I submited a draft PR and with [Maarten Breddel's](https://vaex.io/profile/maarten) help my project got pushed further on and some errors and missunderstandings were corrected.
 
 - **Personal repository for ongoing work**:
 what I found very helpful after submiting the draft PR was making a personal repository where I saved my ongoing work and made issues to track my work. In this way I was able to organize better and the stress of not knowing what exactly should be done next or how fast I should be working was reduced. Also the sharing of work with colleagues and mentor was easier.
@@ -77,19 +87,22 @@ after implementing the protocol for all dtypes another complicated topic was lef
 
 	More about this topic can be found here: https://github.com/data-apis/dataframe-api/issues/9.
 
-	While researching I got lost. Vaex is built on top of NumPy and Apache Arrow so my first task was to understand NumPy and Arrow seperately. Specifying missing values differed between the two. In NumPy one can use masked array subclass of the ndarray, known as ‘numpy.ma’ ([source]() or a missing data placeholder “NA (not available)” which can change the dtype of the data. In Apache Arrow bitmask is used for all dtypes.
+	While researching I got lost. Vaex is built on top of NumPy and Apache Arrow so my first task was to understand NumPy and Arrow seperately. Specifying missing values differed between the two. In NumPy one can use masked array subclass of the ndarray, known as `numpy.ma` or a missing data placeholder `NA (not available)` which can change the dtype of the data. In Apache Arrow bitmask is used for all dtypes.
 	
-	After losing lots of time I realised there is a better solution, and mush easier, as all the details are solved in Vaex itself. All the missing values in Vaex are masked so I used a bitmask from `.ismissing()` method and worked with that. 
+	After losing lots of time I realised there is a better solution, and mush easier, as all the details are solved in Vaex itself. All the missing values in Vaex are masked so I used a bitmask from `.ismissing()` method and worked with that. There are some atribute methods I needed to specify in the `__dataframe__` classes like number of missing values and how are the missing values described. The other thing is that I needed to specify how Vaex handles missing data so that the library transfering from Vaex dataframe will know what to do with the missing values. The last thing that needed to be done is to apply this logic for transformation to  Vaex dataframe that means I needed to specify how the missing values are applied after getting the data out from the buffer. I decided to go for the Apache Arrow arrays and setting the missing data as a mask attribute.
 
 - **Virtual columns**:
-[virtual columns](https://vaex.io/docs/tutorial.html#Virtual-columns) are another great thing in Vaex. As it lazily evaluates the data a newly defined column/expression will not be saved to memory unless specified. 
+[virtual columns](https://vaex.io/docs/tutorial.html#Virtual-columns) are another great thing in Vaex. As it lazily evaluates the data a newly defined column/expression will not be saved to memory unless specified. As far as the implementation is concerned the code already materializes them and handles them as normal columns. So there was no additional work needed in this case.
 
 - **Chunks**:
 the last thing I had to take care of was the implementation of the protocol for chunked dataframe. A chunk is a subset of a column or dataframe that contains a set of (neighboring) rows. Nice visual can be seen [here](https://data-apis.org/dataframe-protocol/latest/design_requirements.html).
 
-	Vaex can read data in chunks. It is not the only library that does so and it is a functionality that should be preserved if possible. What I hadd to add to make it work was the definition of chunks in the `__dataframe__` classes and an iteration through the chunks in `from_dataframe()` before iterating through the columns.
+    ![Chunks](Blog_picture_4.png)
+    
+    Vaex can read data in chunks. It is not the only library that does so and it is a functionality that should be preserved if possible. What I had to add to make it work was the definition of chunks in the `__dataframe__` classes and an iteration through the chunks in `from_dataframe()` before iterating through the columns.
 
-## The End
+## <a name="fin"></a>
+![The End](Blog_picture_5.png)
 These were the main things that needed to be done and from which I have learned a lot. I still had more than 3 weeks after submiting my first ready-for-review PR to Vaex library. While waiting for the comments I had enough time to make this blog post and an example Notebook (link!).
 
 At the end the experiance as an Quansight Intern was highly positive and I am planning to stay engaged in the work of the dataframe API protocol even when the contract is over.
