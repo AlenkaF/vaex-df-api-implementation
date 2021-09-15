@@ -1,5 +1,4 @@
 # Journey through the internship
-*First draft 10/09/2021*
 
 In July 2021 I started my journey as a Quansight Labs Intern. In this blog I am going to reflect on my experience with the on-boarding process, how the interaction in the Labs has been and hopefuly interesting detils of the project I have been working on.
 
