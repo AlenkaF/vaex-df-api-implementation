@@ -20,4 +20,4 @@ With opening and closing of the issues I keep track of work that was and needs t
 
 You can see the final Blog post on the Quansight web page here: (in progress)
 
-You can also try out the example notebook with lounching binder..
+You can also try out the example notebook with launching binder.
