@@ -1,17 +1,4 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: win-64
-numpy-base=1.20.3=py39hc2deb75_0
-pandas=1.3.0=py39h2e25243_0
-pandocfilters=1.4.3=py39haa95532_1
-pyarrow=4.0.1=py39hf9247be_4_cpu
-vaex=4.3.0=dev_0
-vaex-astro=0.8.2=dev_0
-vaex-core=4.3.0.post1=dev_0
-vaex-graphql=0.2.0=dev_0
-vaex-hdf5=0.8.0=dev_0
-vaex-jupyter=0.6.0=dev_0
-vaex-ml=0.12.0=dev_0
-vaex-server=0.5.0=dev_0
-vaex-ui=0.3.0=dev_0
-vaex-viz=0.5.0=dev_0
+numpy==1.20.3
+pandas==1.3.0
+pyarrow==4.0.1
+vaex==4.3.0

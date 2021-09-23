@@ -21,7 +21,6 @@ import ctypes
 from typing import Any, Optional, Tuple, Dict, Iterable, Sequence
 
 import vaex
-import pyarrow
 import pyarrow as pa
 import numpy as np
 import pandas as pd
