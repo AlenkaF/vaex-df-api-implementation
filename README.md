@@ -1,7 +1,7 @@
 # Vaex dataframe interchange protocol implementation
 I created this personal repo to save and share my work on the dataframe interchange protocol for Vaex library.
 
-<center><img src="blog-post-and-example_notebook/Blog_picture_2.png" width="600"></center>
+<center><img src="blog-post-and-example_notebook/Blog_picture_2.jpg" width="600"></center>
 
 ## Nootebooks
 
