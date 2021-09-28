@@ -1,9 +1,0 @@
-name: df_protocol
-channels:
-  - conda-forge
-dependencies:
-  - numpy
-  - pandas
-  - pyarrow
-  - vaex
-  - pytest
