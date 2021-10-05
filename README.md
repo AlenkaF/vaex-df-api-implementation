@@ -16,7 +16,8 @@ With opening and closing of the issues I keep track of work that was and needs t
 
 # Final blog post and Example Notebook
 
-You can see the final Blog post on the Quansight web page here: (in progress)
+You can see the final Blog post on the
+<a href="https://labs.quansight.org/blog/2021/10/dataframe-interchange-protocol-and-vaex/">Quansight web page</a>.
 
 To try out an example notebook with a live Python kernel, use mybinder:
 
