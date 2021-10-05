@@ -42,11 +42,7 @@ The `__dataframe__` method returns an instance of the `_DataFrame` class. At thi
 
 > The smallest building blocks in the memory representation of the dataframe are 1-D arrays (or "buffers"), which are contiguous in memory and contain data with the same dtype. A column consists of one or more 1-D arrays (if, e.g., missing data is represented with a boolean mask, that's a separate array). A dataframe contains one or more columns. A column or a dataframe can be "chunked"; a chunk is a subset of a column or dataframe that contains a set of (neighboring) rows.
 
-
-
-(Add picture of the UML graph!)
-
-
+<center><img src="Blog_picture_UML.jpg" width="900"></center>
 
 For the memory representation of the dataframe three separate classes are defined. These are `_Buffer`, `_Column` and `_DataFrame`. In the Vaex implementation we named them `_VaexBuffer`, `_VaexColumn` and `_VaexDataFrame` respectively. Each of them has necessary and utility methods to construct and describe a dataframe. 
 
